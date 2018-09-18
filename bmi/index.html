@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        span, p {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <label>Mass (kg) :
+        <input id="mass" class="data" type="number" required>
+    </label>
+    <label>Height (m) :
+        <input id="height" class="data" type="number" required>
+    </label>
+    <hr>
+    <span>BMI :</span>
+    <p id="result"></p>
+
+    <script>
+        'use strict';
+
+        let user_data = document.getElementsByClassName('data');
+        let user_data_length = user_data.length;
+
+        let user_height = 0;
+        let user_mass = 0;
+
+        let user_bmi = document.getElementById('result');
+
+        for(let i=0; i<user_data_length; i++) {
+
+            user_data[i].addEventListener('input', (e) => {
+                if (e.target.id === 'mass') {
+                    if (e.target.value > 0) {
+                        user_mass = parseInt(e.target.value);
+                    } else {
+                        e.target.value = null;
+                    }
+                } else {
+                    if (e.target.value > 0) {
+                        user_height = parseInt(e.target.value);
+                    } else {
+                        e.target.value = null;
+                    }
+                }
+                if (user_mass && user_height) {
+                    user_bmi.innerText = (user_mass / (user_height*user_height)).toFixed(1);
+                }
+            }, false);
+        }
+    </script>
+</body>
+</html>

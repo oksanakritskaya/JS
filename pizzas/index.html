@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const pizzas = [
+            {
+                name: 'Mozarella',
+                ingredients: [
+                    {
+                        name: 'cheese',
+                        weight: 45
+                    },
+                    {
+                        name: 'salami',
+                        weight: 12
+                    }
+                ]
+            },
+            {
+                name: 'Dreams of Man',
+                ingredients: [
+                    {
+                        name: 'cheese',
+                        weight: 17
+                    },
+                    {
+                        name: 'beef',
+                        weight: 55
+                    },
+                    {
+                        name: 'eggs',
+                        weight: 21
+                    }
+                ]
+            }
+        ];
+
+        function getMenu(data) {
+            let normalizedPizzas = [];
+
+            const allIngredients = [];
+            data.forEach(function(pizza) {
+                pizza.ingredients.forEach(function(ingredient) {
+                    allIngredients.push(ingredient.name);
+                });
+            });
+
+            const uniqueIngredients = allIngredients.filter(function(ingredient, index) {
+                return allIngredients.indexOf(ingredient) === index;
+            });
+
+            data.forEach(function(pizza) {
+                const ingredients = pizza.ingredients.map(function(ingredient) {
+                        return ingredient.name;
+                });
+                uniqueIngredients.forEach(function(uniqueIngredient) {
+                    if(!ingredients.includes(uniqueIngredient)) {
+                        pizza.ingredients.push({
+                            name: uniqueIngredient,
+                            weight: null
+                        });
+                    }
+                });
+                normalizedPizzas.push(pizza);
+            });
+            return normalizedPizzas;
+
+        }
+        console.log(getMenu(pizzas));
+    </script>
+</body>
+</html>

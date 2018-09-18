@@ -1,0 +1,53 @@
+/*body {
+    overflow: hidden;
+}*/
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+button  > i.right {
+    margin: 0;
+}
+.catalog {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.catalog > .card {
+    flex-basis: 265px;
+}
+.features-list {
+    display: flex;
+}
+.feedback-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.5);
+}
+#add-form {
+    margin: auto;
+    padding: 30px 60px 0;
+    border: 1px solid black;
+
+    width: 700px;
+    height: 730px;
+
+    background-color: white;
+}
+.btn, .btn-small {
+    margin-top: 20px;
+}
+i.right {
+    margin: 0;
+}

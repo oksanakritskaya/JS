@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>
+            BOOKING
+        </h1>
+        <div class="row">
+            <div class="column col s4">
+                <aside class="filter col s12">
+                    <form id="filters-form">
+                        <div class="input-field col s12">
+                            <select id="rating" class="select-item">
+                                <option value="" disabled selected>Choose one...</option>
+                                <option value="1">⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="5">⭐⭐⭐⭐⭐</option>
+                            </select>
+                            <label>Minimum rating</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select id="mealType" class="select-item">
+                                <option value="" disabled selected>Choose one...</option>
+                                <option value="All Inclusive">All Inclusive</option>
+                                <option value="Breakfast only">Breakfast only</option>
+                                <option value="Breakfast and Bed">Breakfast and bed</option>
+                            </select>
+                            <label>Meal type</label>
+                        </div>
+                        <fieldset>
+                            <legend>
+                                Features
+                            </legend>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" value="wifi"/>
+                                    <span>Wi-Fi</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" value="beach"/>
+                                    <span>Own Beach</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" value="gym"/>
+                                    <span>GYM</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" value="conference"/>
+                                    <span>Conference Hall</span>
+                                </label>
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                Region
+                            </legend>
+                            <label>
+                                <input class="with-gap" name="region" type="radio" value="Kemer"/>
+                                <span>Kemer</span>
+                            </label>
+                            <label>
+                                <input class="with-gap" name="region" type="radio" value="Antalya"/>
+                                <span>Antalya</span>
+                            </label>
+                            <label>
+                                <input class="with-gap" name="region" type="radio" value="Istanbul"/>
+                                <span>Istanbul</span>
+                            </label>
+                        </fieldset>
+                    </form>
+                    <a id="open-button" class="waves-effect waves-light btn-small col s12"><i class="material-icons right">add_circle</i>Adding a hotel</a>
+                </aside>
+            </div>
+            <section class="catalog col s7 offset-s1">
+            </section>
+        </div>
+        <div class="feedback-wrap" style="display:none">
+            <form id="add-form">
+                <button class="right"><i class="small material-icons right">close</i></button>
+                <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name (10-30 symbols)</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description (up to 140 symbols)</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">⭐</i>
+                    <input id="rating_input" type="text" class="validate">
+                    <label for="rating_input">Rating (1-5)</label>
+                </div>
+                <div class="input-field col s12">
+                    <select id="region_input" class="select-item">
+                        <option value="" disabled selected>Region</option>
+                        <option value="Kemer">Kemer</option>
+                        <option value="Antalya">Antalya</option>
+                        <option value="Istanbul">Istanbul</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select id="mealType_input" class="select-item">
+                        <option value="" disabled selected>Meal type</option>
+                        <option value="Breakfast only">Breakfast only</option>
+                        <option value="Breakfast and Bed">Breakfast and Bed</option>
+                        <option value="All Inclusive">All Inclusive</option>
+                    </select>
+                </div>
+                <fieldset>
+                    <legend>
+                        Features
+                    </legend>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" value="wifi"/>
+                            <span>Wi-Fi</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" value="beach"/>
+                            <span>Own Beach</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" value="gym"/>
+                            <span>GYM</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" value="conference"/>
+                            <span>Conference Hall</span>
+                        </label>
+                    </p>
+                </fieldset>
+                <button class="btn waves-effect waves-light col s12" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </main>
+    <template id="offer">
+        <div class="card">
+            <div class="card-image">
+                <img class="hotel-picture" src="img/1.jpg">
+                <span class="card-title">
+                    <span class="name-hotel">Ozkayamag Falez</span>
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                </span>
+            </div>
+            <div class="card-content">
+                <p class="description"></p>
+                <p>
+                    <b>Meal type:</b> <span class="meal-type">AF</span>
+                </p>
+                <p>
+                    <b>Region: </b> <span class="region">Kemer</span>
+                </p>
+                <p>
+                    <ul class="features-list">
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/feedback.js"></script>
+</body>
+
+</html>
