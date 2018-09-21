@@ -4,11 +4,19 @@
 button {
     padding: 0;
     border: none;
+
     background-color: transparent;
     text-align: center;
+    cursor: pointer;
 }
 button  > i.right {
     margin: 0;
+}
+select[required] {
+    display: block;
+    height: 0;
+    padding: 0;
+    width: 0;
 }
 .catalog {
     display: flex;
@@ -23,7 +31,7 @@ button  > i.right {
 .features-list {
     display: flex;
 }
-.feedback-wrap {
+.feedback {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,19 +43,30 @@ button  > i.right {
 
     background-color: rgba(0,0,0,0.5);
 }
-#add-form {
+.feedback-form {
     margin: auto;
     padding: 30px 60px 0;
     border: 1px solid black;
 
     width: 700px;
-    height: 730px;
+    height: 700px;
 
     background-color: white;
+}
+.feedback-title {
+    margin-top: -5px;
+}
+#add-form {
 }
 .btn, .btn-small {
     margin-top: 20px;
 }
 i.right {
     margin: 0;
+}
+.hidden {
+    display: none;
+}
+.button-send {
+    width: 30%;
 }

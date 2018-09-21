@@ -1,8 +1,9 @@
-(function () {
+(function (global) {
+    //console.log(global.modules.hotels);
     const hotels = [
         {
             name: 'Ozkayamag Falez',
-            rating: 1,
+            rating: 4,
             description: 'This property is 4 minutes walk from the beach. Ozkaymak Falez Hotel offers 2 outdoor pools, a children’s pool, an indoor pool, and a water slide. The hotel has a spa centre and 4 tennis courts. Ozkaymak’s private beach is 200 m away, and a shuttle is provided.',
             mealType: 'All Inclusive',
             features: ['wifi', 'beach', 'gym', 'conference'],
@@ -12,7 +13,7 @@
             name: 'Hotel SU And Aqualand ',
             rating: 3,
             description: 'All rooms and suites at Hotel SU & Aqualand feature trendy interiors and mood lighting. Each has a private balcony with a sofa and central heating/cooling system. Special treats and complimentary toiletries are offered for each guest.',
-            mealType: 'Breakfast only',
+            mealType: 'Breakfast and Bed',
             features: ['wifi', 'beach'],
             region: 'Istanbul',
             img: '2.jpg'
@@ -26,7 +27,7 @@
             img: '3.jpg'
         }, {
             name: 'Crowne Plaza',
-            rating: 2,
+            rating: 5,
             description: 'This property is 4 minutes walk from the beach. Set along the famous Konyaalti Beach, Crowne Plaza Antalya offers luxurious 5-star accommodation and open views of the Mediterranean Sea. It has indoor and outdoor pools, an extensive spa and free WiFi.',
             mealType: 'All Inclusive',
             features: ['wifi'],
@@ -34,32 +35,33 @@
             img: '4.jpg'
         }, {
             name: 'Ritz Carlton',
-            rating: 5,
+            rating: 4,
             description: 'The most luxurious place in the world',
             mealType: 'All Inclusive',
             features: ['wifi', 'conference', 'beach'],
             region: 'Kemer',
-            img: '1.jpg'
+            img: '3.jpg'
         },
         {
             name: 'Royal Plaza',
-            rating: 4,
+            rating: 2,
             description: 'The most luxurious place in the world',
-            mealType: 'Breakfast and Bed',
+            mealType: 'Breakfast only',
             features: ['gym'],
             region: 'Istanbul',
             img: '2.jpg'
         },
         {
             name: 'Sultan Palace',
-            rating: 3,
+            rating: 1,
             description: 'The most luxurious place in the world',
-            mealType: 'Breakfast and Bed',
+            mealType: 'Breakfast only',
             features: ['beach', 'gym'],
             region: 'Antalya',
-            img: '3.jpg'
+            img: '1.jpg'
         }
     ];
+    localStorage.setItem('hotels', JSON.stringify(hotels));
 
     let features_template = {
         wifi: '💻',
@@ -184,4 +186,7 @@
     }
 
     constructCards();
-})();
+
+/*window.addEventListener('localDataStorage', function(e) {
+    console.log(e);*/
+})(window);

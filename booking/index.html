@@ -87,77 +87,82 @@
                             </label>
                         </fieldset>
                     </form>
-                    <a id="open-button" class="waves-effect waves-light btn-small col s12"><i class="material-icons right">add_circle</i>Adding a hotel</a>
+                    <button id="button-open" class="waves-effect waves-light btn-small col s12"><i class="material-icons right">add_circle</i>Adding a hotel</button>
                 </aside>
             </div>
             <section class="catalog col s7 offset-s1">
             </section>
         </div>
-        <div class="feedback-wrap" style="display:none">
-            <form id="add-form">
-                <button class="right"><i class="small material-icons right">close</i></button>
-                <div class="input-field col s12">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">Name (10-30 symbols)</label>
-                </div>
-                <div class="input-field col s12">
-                    <textarea id="description" class="materialize-textarea"></textarea>
-                    <label for="description">Description (up to 140 symbols)</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">⭐</i>
-                    <input id="rating_input" type="text" class="validate">
-                    <label for="rating_input">Rating (1-5)</label>
-                </div>
-                <div class="input-field col s12">
-                    <select id="region_input" class="select-item">
-                        <option value="" disabled selected>Region</option>
-                        <option value="Kemer">Kemer</option>
-                        <option value="Antalya">Antalya</option>
-                        <option value="Istanbul">Istanbul</option>
-                    </select>
-                </div>
-                <div class="input-field col s12">
-                    <select id="mealType_input" class="select-item">
-                        <option value="" disabled selected>Meal type</option>
-                        <option value="Breakfast only">Breakfast only</option>
-                        <option value="Breakfast and Bed">Breakfast and Bed</option>
-                        <option value="All Inclusive">All Inclusive</option>
-                    </select>
-                </div>
-                <fieldset>
-                    <legend>
-                        Features
-                    </legend>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" value="wifi"/>
-                            <span>Wi-Fi</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" value="beach"/>
-                            <span>Own Beach</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" value="gym"/>
-                            <span>GYM</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" value="conference"/>
-                            <span>Conference Hall</span>
-                        </label>
-                    </p>
-                </fieldset>
-                <button class="btn waves-effect waves-light col s12" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
+        <div class="feedback hidden">
+            <div class="feedback-form">
+                <button id="button-close" class="right" type="button"><i class="small material-icons right">close</i></button>
+                <form id="add-form">
+                    <h4 class="feedback-title">Adding a hotel</h4>
+                    <div class="input-field col s6">
+                        <input id="name_input" type="text" class="validate" minlength="10" maxlength="30" required pattern="^((?!\s{2}).)*$">
+                        <label for="name_input">Last Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="description_input" class="materialize-textarea" maxlength="140"></textarea>
+                        <label for="description_input">Description</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">⭐</i>
+                            <input id="rating_input" type="number" class="validate" min="1" max="5" required>
+                            <label for="rating_input">Rating (1-5)</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="mealType_input" class="validate" required="" aria-required="true">
+                                <option class="default-option" value="" disabled selected>Meal type</option>
+                                <option value="Breakfast only">Breakfast only</option>
+                                <option value="Breakfast and Bed">Breakfast and Bed</option>
+                                <option class="disabled-option disabled" value="All Inclusive" disabled>All Inclusive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <select id="region_input" class="select-item" required="" aria-required="true">
+                            <option value="" disabled selected> Region</option>
+                            <option value="Kemer">Kemer</option>
+                            <option value="Antalya">Antalya</option>
+                            <option value="Istanbul">Istanbul</option>
+                        </select>
+                    </div>
+                    <fieldset id="features">
+                        <legend>
+                            Features
+                        </legend>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in checked-option-wifi" value="wifi">
+                                <span>Wi-Fi</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in disabled-option-beach" value="beach">
+                                <span>Own Beach</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" value="gym">
+                                <span>GYM</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" value="conference">
+                                <span>Conference Hall</span>
+                            </label>
+                        </p>
+                    </fieldset>
+                    <button class="btn waves-effect waves-ligh button-send" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
         </div>
     </main>
     <template id="offer">
@@ -186,6 +191,7 @@
     </template>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="js/init.js"></script>
+    <script src="js/events.js"></script>
     <script src="js/main.js"></script>
     <script src="js/feedback.js"></script>
 </body>
