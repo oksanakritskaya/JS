@@ -1,4 +1,4 @@
-let modules = (function() {
+let cardsModule = (function(global) {
     let test_mass = [1,2,3,4,5];
     return {
         //вызвать все (слушатель)
@@ -15,6 +15,6 @@ let modules = (function() {
             return 'createCard';
         }
     }
-})();
+})(window);
 
 console.log(modules.renderCards());

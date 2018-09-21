@@ -1,5 +1,6 @@
 (function (global) {
-    //console.log(global.modules.hotels);
+    console.log('this is ', cardsModule);
+
     const hotels = [
         {
             name: 'Ozkayamag Falez',
