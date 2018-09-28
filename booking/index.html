@@ -21,7 +21,7 @@
                 <aside class="filter col s12">
                     <form id="filters-form">
                         <div class="input-field col s12">
-                            <select id="rating" class="select-item">
+                            <select name="rating" class="select-item">
                                 <option value="" disabled selected>Choose one...</option>
                                 <option value="1">⭐</option>
                                 <option value="2">⭐⭐</option>
@@ -32,7 +32,7 @@
                             <label>Minimum rating</label>
                         </div>
                         <div class="input-field col s12">
-                            <select id="mealType" class="select-item">
+                            <select name="mealType" class="select-item">
                                 <option value="" disabled selected>Choose one...</option>
                                 <option value="All Inclusive">All Inclusive</option>
                                 <option value="Breakfast only">Breakfast only</option>
@@ -46,25 +46,25 @@
                             </legend>
                             <p>
                                 <label>
-                                    <input type="checkbox" class="filled-in" value="wifi"/>
+                                    <input type="checkbox" name="feature" class="filled-in" value="wifi"/>
                                     <span>Wi-Fi</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input type="checkbox" class="filled-in" value="beach"/>
+                                    <input type="checkbox" name="feature" class="filled-in" value="beach"/>
                                     <span>Own Beach</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input type="checkbox" class="filled-in" value="gym"/>
+                                    <input type="checkbox" name="feature" class="filled-in" value="gym"/>
                                     <span>GYM</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input type="checkbox" class="filled-in" value="conference"/>
+                                    <input type="checkbox" name="feature" class="filled-in" value="conference"/>
                                     <span>Conference Hall</span>
                                 </label>
                             </p>
@@ -192,7 +192,7 @@
     </template>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/events.js"></script>
+    <script src="js/eventBus.js"></script>
     <script src="js/main.js"></script>
     <script src="js/create_card.js"></script>
 </body>

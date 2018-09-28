@@ -7,22 +7,10 @@
         M.Modal.getInstance(document.getElementById('modal1')).close();
     });
 
-    const regionsRules = {
-        Istanbul: {
-            disabled: 'beach'
-        },
-        Kemer: {
-            disabled: 'wifi',
-            checked: 'wifi'
-        },
-        Antalya: {
-            disabled: 'wifi',
-            checked: 'wifi'
-        }
-    }
-    form = document.getElementById('add-form');
+    let form = document.getElementById('add-form');
 
     form.addEventListener('change', function(e) {
+        console.log('change');
         const inputs_map = {
             'rating_input': function() {
                 if(e.target.value >= 4) {
@@ -39,7 +27,7 @@
                 }
             },
             'region_input': function() {
-                /*let checkbox_map = {
+                let checkbox_map = {
                     'Istanbul': function() {
                         featuresDisabledChecked(true, false, false);
                     },
@@ -52,34 +40,14 @@
                 };
                 document.querySelector('.disabled-option-beach').checked = false;
                 document.querySelector('.checked-option-wifi').checked = false;
-                checkbox_map[e.target.value]();
+                if(checkbox_map[e.target.value]) {
+                    checkbox_map[e.target.value]();
+                }
                 function featuresDisabledChecked(beach, wifiD, wifiC) {
                     document.querySelector('.disabled-option-beach').disabled = beach;
                     document.querySelector('.checked-option-wifi').disabled = wifiD;
                     document.querySelector('.checked-option-wifi').checked = wifiC;
-                }*/
-                if(regionsRules[e.target.value]) {
-                    //console.log(regionsRules[e.target.value]);
-                    Object.keys(regionsRules[e.target.value]).forEach(function(key) {
-                        console.log(key);
-                        console.log(regionsRules[e.target.value][key]);
-                        form.querySelectorAll('.filled-in').filter(function(elem) {
-                            return elem.value === regionsRules[e.target.value][key];
-                        }).every(function(elem) {
-                            elem.setAttribute(key, true);
-                        })
-                        /* console.log('--------')
-                        console.log(key);
-                        form.querySelectorAll('.filled-in').forEach(function(elem) {
-                            console.log(elem.value+' '+elem.checked);
-                            console.log(elem.value+' '+elem.disabled);
-                            if(regionsRules[e.target.value][key] === elem.value) {
-                                elem.setAttribute(key, true);
-                            }
-                        })
-                        console.log('--------') */
-                    });
-                };
+                }
             }
         };
         if(inputs_map[e.target.id]) {
@@ -95,9 +63,8 @@
             rating: 0,
             description: '',
             mealType: '',
-            features: ['wifi', 'beach', 'gym', 'conference'],
+            features: [],
             region: '',
-            img: '1.jpg'
         };
         let form = document.getElementById('add-form');
         for (let key in newHotel) {
@@ -111,7 +78,7 @@
                             .map(function (checkbox) {
                                 return checkbox.value;
                             });
-                        newHotel[key] = form.elements[i].value = checkedFeatures;
+                        newHotel[key] = checkedFeatures;
                         break;
                     } else {
                         newHotel[key] = form.elements[i].value;
@@ -120,9 +87,8 @@
                 }
             }
         }
-        cardsModule.addCard(newHotel);
+        eventBus.publish('ADD_CARD', newHotel);
 
-        //document.getElementById('button-close').dispatchEvent(new Event("click"));
         M.Modal.getInstance(document.getElementById('modal1')).close();
         form.reset();
         window.scrollTo(0, document.body.scrollHeight);
