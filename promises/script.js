@@ -1,32 +1,91 @@
-// I
-// Write a function 'delay' which accepts two arguments
-// a function F
-// a delay time in ms
-// 'delay' should execute F after delay time and return  a promise
-// which resolves with return value of F
-// should print 'Greeted' after 3 seconds
+/*const delayedGreet = delay(function() {
+    console.log('Hello');
 
-// Записываем функцию «delay», которая принимает два аргумента
-// Если функция F
-// время задержки в мс
-// 'delay' должен выполнить F после задержки и вернуть обещание
-// который разрешает с возвратным значением F
-//следует распечатать «Приветствуется» через 3 секунды
-
-const delayedGreet = delay(function(success, error) {
-  console.log('Hello');
-
-  return 'Greeted';
+    return 'Greeted';
 }, 3000);
 
-delayedGreet
-  .then(function(result) {
-    console.log(result);
-  });
-
-
-function delay() {
+function delay(F, time) {
     return new Promise(function(resolve, reject) {
-        resolve();
+        setTimeout(function() {
+            resolve(F());
+        }, time);
+    })
+}
+
+delayedGreet
+    .then(function(result) {
+        console.log(result);
+    });
+
+//-------------------------------------------------
+
+const ingredients = all(
+    Promise.resolve('cheese'),
+    Promise.resolve('beef'),
+    Promise.resolve('pepper')
+);
+function all(arg1, arg2, arg3) {
+    let proms = [arg1, arg2, arg3];
+    let results = [];
+
+    return new Promise(function (resolve, reject) {
+        proms.forEach(function (prom) {
+            prom.then(function (result) {
+                results.push(result);
+            }).catch(function (result) {
+                return 'error';
+            });
+        });
+        setTimeout(function() {
+            if(results.length === proms.length) {
+                resolve(results);
+            }
+        });
+    })
+}
+
+ingredients
+    .then(function(pizzaParts) {
+        console.log(pizzaParts);
+    });*/
+
+//-------------------------------------------------
+
+const promises = [
+    delay(greet('Alex'), 1000),
+    delay(greet('Bob'), 300),
+    delay(greet('Viktor'), 2500)
+];
+
+function race(proms) {
+    return new Promise(function(resolve, reject){
+        proms.forEach(function (prom) {
+            prom.then(function (result) {
+                resolve(result);
+            }).catch(function (result) {
+                return 'error';
+            });
+        });
     });
 }
+
+function delay(func, t) {
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){
+            //resolve(func);
+            resolve(func());
+        }, t);
+    });
+}
+
+function greet(name) {
+    //return 'Hello, ' + name;
+    return function() {
+        return 'Hello, ' + name;
+    }
+}
+
+race(promises)
+    .then(function (result) {
+        console.log(result);
+    });
